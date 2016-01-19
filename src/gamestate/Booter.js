@@ -1,4 +1,5 @@
 
+// with es6
 
 class Booter {
     constructor (game) {

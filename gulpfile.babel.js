@@ -1,12 +1,6 @@
 
 
-//var gulp = require('gulp'),
-//    babel = require('gulp-babel'),
-//    inject = require('gulp-inject'),
-//    del = require('del'),
-//    runSeq = require('run-sequence'),
-//    gwatch = require('gulp-watch'),
-//    pkg = require('./package.json');
+// 使用es6的语法
 
 import gulp from 'gulp';
 import babel from 'gulp-babel';
@@ -29,16 +23,16 @@ gulp.task('build-src', () => {
 
 //
 gulp.task('inject-state', () => {
-    var target = gulp.src('./app/index.html');
+    let target = gulp.src(`${paths.app}/index.html`, {base: `${paths.app}`});
   // It's not necessary to read the files (will speed up things), we're only after their paths:
-    var sources = gulp.src(['./app/js/gamestate/**/*.js'], {read: false, base: "./app"});
+    let sources = gulp.src([`${paths.app}/js/gamestate/**/*.js`], {read: false, base: `${paths.app}`});
 
     return target.pipe(inject(sources, {relative: true, name: "gamestate"}))
-        .pipe(gulp.dest('./app'));
+        .pipe(gulp.dest(`${paths.app}`));
 });
 
 gulp.task('watch-state', () => {
-    gwatch('./app/js/gamestate/**/*.js', {events:['add', 'unlink']}, () => {
+    gwatch(`${paths.app}/js/gamestate/**/*.js`, {events:['add', 'unlink']}, () => {
         runSeq('inject-state');
     })
 });

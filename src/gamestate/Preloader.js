@@ -1,4 +1,6 @@
 
+// with es6
+
 class Preloader {
     constructor (game) {
 

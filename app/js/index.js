@@ -1,5 +1,6 @@
 'use strict';
 
+// with es6
 function main() {
     var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'game');
     game.state.add('Booter', Booter);

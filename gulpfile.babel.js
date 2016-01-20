@@ -8,16 +8,24 @@ import inject from 'gulp-inject';
 import del from 'del';
 import runSeq from 'run-sequence';
 import gwatch from 'gulp-watch';
+import notify from 'gulp-notify';
 import pkg from './package.json';
 
 const paths = {src: './src', app: './app'};
+
+function errorAlert(error){
+	notify.onError({title: "Gulp-Babel ES6 Error", message: "Check your terminal for more infomation", sound: "Sosumi"})(error); //Error Notification
+	console.error(error.toString());//Prints Error to Console
+	this.emit("end"); //End function
+};
 
 //
 gulp.task('build-src', () => {
     return gulp.src(`${paths.src}/**/*.js`)
         .pipe(babel({
-			presets: ['es2015']
-		}))
+            presets: ['es2015']
+        }))
+        .on('error', errorAlert)
         .pipe(gulp.dest(`${paths.app}/js`));
 });
 

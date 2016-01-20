@@ -1,9 +1,11 @@
 
 // with es6
 function main() {
-    let game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'game');
+    let game = new Phaser.Game('100%', '100%', Phaser.AUTO);
     game.state.add('Booter', Booter);
     game.state.add('Preloader', Preloader);
+    game.state.add('MainMenu', MainMenu);
+    game.state.add('Game', Game);
 
     game.state.start('Booter');
 }
